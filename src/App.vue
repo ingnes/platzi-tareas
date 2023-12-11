@@ -1,20 +1,21 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+<template lang="pug">
+  tsk-header
+  tsk-task 
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import TskHeader from '@/components/TaskHeader.vue'
+import TskTask from '@/components/Task.vue'
 
 export default {
-  name: "App",
-  components: {
-    HelloWorld,
-  },
-};
+  name: 'App',
+
+  components: { TskHeader, TskTask },
+}
 </script>
 
 <style lang="scss">
+@import '@/scss/main.scss';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
