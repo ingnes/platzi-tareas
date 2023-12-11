@@ -1,41 +1,49 @@
 <template lang="pug">
 
-  .container    
-    .field      
-        label.label.has-text-left.is-size-5 Titulo      
-        .control
-            input.input.is-medium.is-rounded(v-model="title", type="text" placeholder="Titulo")
-            span.is-small {{ title }}
+  .container
+    .columns.is-centered 
+      .column.is-narrow.is-three-fifths   
+        .field      
+          label.label.has-text-left.is-size-5 Titulo      
+          .control
+              input.input.is-medium.is-rounded(v-model="title", type="text" placeholder="Titulo")
+              span.is-small {{ title }}
 
-    .field      
-        label.label.has-text-left.is-size-5 Tiempo
-        .control
-            input.input.is-medium(v-model="time", type="number" placeholder="Tiempo")
-            span.is-small {{ time }}
+        .field      
+            label.label.has-text-left.is-size-5 Tiempo
+            .control
+                input.input.is-medium(v-model="time", type="number" placeholder="Tiempo")
+                span.is-small {{ time }}
     
-      
-    .field.is-grouped
-      .control
-          button.button.is-success.is-medium(@click="addNewTask") Nueva Tarea
-      .control
-          button.button.is-danger.is-medium(@click="cancelar") Cancelar
-    .field
-      .label.label  {{ totalTime }}   
-  
-    p.is-danger(v-show="!showTasks") {{ 'No hay tareas cargadas' }}
-    .table-containter
-      table.table.is-bordered.is-striped(v-show="showTasks")
-        thead
-          th Titulo
-          th Tiempo
-          th Acciones
-            
-        tbody
-          tr(v-for="(t,i) in tasks",:key="i")
-            td {{ t.title }}
-            td {{ t.time }}
-            td
-              button.button.is-danger(@click="removeTask(i)") ❌
+    .columns.is-centered 
+      .column.is-narrow.is-three-fifths 
+        .field.is-grouped
+          .control
+              button.button.is-success.is-medium(@click="addNewTask") Nueva Tarea
+          .control
+              button.button.is-danger.is-medium(@click="cancelar") Cancelar
+
+    .columns
+      .column.is-narrow.is-three-fifths
+       .field
+         .label.label  {{ totalTime }}  
+   
+    .columns.is-centered 
+      .column.is-narrow.is-three-fifths
+        p.is-danger(v-show="!showTasks") {{ 'No hay tareas cargadas' }}
+        .table-containter
+          table.table.is-bordered.is-striped(v-show="showTasks")
+            thead
+              th.has-text-centered Titulo
+              th.has-text-centered Tiempo
+              th.has-text-centered Acciones
+                
+            tbody
+              tr(v-for="(t,i) in tasks",:key="i")
+                td {{ t.title }}
+                td {{ t.time }}
+                td
+                  button.button.is-danger(@click="removeTask(i)") ❌
 </template>
 
 <script>
