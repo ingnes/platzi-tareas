@@ -7,13 +7,13 @@
           label.label.has-text-left.is-size-5 Titulo      
           .control
               input.input.is-medium.is-rounded(v-model="title", type="text" placeholder="Titulo")
-              span.is-small {{ title }}
+              //- span.is-small {{ title }}
 
         .field      
             label.label.has-text-left.is-size-5 Tiempo
             .control
                 input.input.is-medium(v-model="time", type="number" placeholder="Tiempo")
-                span.is-small {{ time }}
+                //- span.is-small {{ time }}
     
     .columns.is-centered 
       .column.is-narrow.is-three-fifths 
@@ -21,16 +21,11 @@
           .control
               button.button.is-success.is-medium(@click="addNewTask") Nueva Tarea
           .control
-              button.button.is-danger.is-medium(@click="cancelar") Cancelar
-
-    .columns
-      .column.is-narrow.is-three-fifths
-       .field
-         .label.label  {{ totalTime }}  
+              button.button.is-danger.is-medium(@click="cancelar") Cancelar      
    
     .columns.is-centered 
       .column.is-narrow.is-three-fifths
-        p.is-danger(v-show="!showTasks") {{ 'No hay tareas cargadas' }}
+        p.is-danger.has-text-weight-bold.has-text-left(v-show="!showTasks") {{ 'No hay tareas cargadas' }}
         .table-containter
           table.table.is-bordered.is-striped(v-show="showTasks")
             thead
@@ -44,6 +39,12 @@
                 td {{ t.time }}
                 td
                   button.button.is-danger(@click="removeTask(i)") ❌
+            tfoot
+                tr 
+                  td.has-text-right.has-text-weight-bold {{ 'Total tiempo de tareas' }}                 
+                  td.has-text-weight-bold {{ totalTime }}
+                  td
+                  
 </template>
 
 <script>
@@ -61,10 +62,7 @@ export default {
 
   computed: {
     totalTime() {
-      return ` Total de tiempo trabajado ${this.tasks.reduce(
-        (a, b) => a + parseInt(b.time),
-        0
-      )}`
+      return `${this.tasks.reduce((a, b) => a + parseInt(b.time), 0)}`
     },
   },
 
